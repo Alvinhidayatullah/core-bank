@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "account_number": "admin",
+      "name": "boy",
+      "password": "bank",
+      "balance": 2824335
+    }
+  ],
+  "banks": [
+    {
+      "id": "bca",
+      "name": "BCA",
+      "url": "https://www.bca.co.id"
+    },
+    {
+      "id": "mandiri",
+      "name": "Bank Mandiri",
+      "url": "https://bankmandiri.co.id"
+    },
+    {
+      "id": "bri",
+      "name": "BRI",
+      "url": "https://bri.co.id"
+    },
+    {
+      "id": "bni",
+      "name": "BNI",
+      "url": "https://www.bni.co.id"
+    },
+    {
+      "id": "bsi",
+      "name": "BSI",
+      "url": "https://www.bankbsi.co.id"
+    },
+    {
+      "id": "ocbc",
+      "name": "OCBC",
+      "url": "https://www.ocbc.id"
+    },
+    {
+      "id": "permata",
+      "name": "Bank Permata",
+      "url": "https://www.permatabank.com"
+    },
+    {
+      "id": "danamon",
+      "name": "Bank Danamon",
+      "url": "https://www.danamon.co.id"
+    }
+  ]
+}
