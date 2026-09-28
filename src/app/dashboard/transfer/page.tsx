@@ -65,7 +65,7 @@ export default function TransferPage() {
         amount: numericAmount,
         adminFee: fee,
         total: totalAmount,
-        newBalance: res.newBalance,
+        newBalance: res.newBalance ?? undefined,
         sourceBank: sourceBank,
         destinationBank: destinationBank,
         refNo: 'TRF-' + Math.random().toString().slice(2, 10),

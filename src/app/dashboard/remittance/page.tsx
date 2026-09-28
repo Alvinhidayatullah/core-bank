@@ -66,7 +66,7 @@ export default function RemittancePage() {
         amount: numericAmount,
         adminFee: fee,
         total: totalAmount,
-        newBalance: res.newBalance,
+        newBalance: res.newBalance ?? undefined,
         sourceBank: sourceBank,
         refNo: 'REM-' + Math.random().toString().slice(2, 10),
         date: new Date().toLocaleString('id-ID'),

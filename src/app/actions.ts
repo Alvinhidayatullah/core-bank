@@ -101,7 +101,7 @@ export async function transferFunds(formData: FormData) {
   }
 
   const currentBalance = await getBalance();
-  if (currentBalance < amount) {
+  if (currentBalance === null || currentBalance < amount) {
     return { success: false, error: 'Insufficient funds' };
   }
 

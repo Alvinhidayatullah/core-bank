@@ -11,14 +11,14 @@ export interface User {
 }
 
 // In-memory cache fallback for Vercel serverless environment
-let memoryDb: { users: User[], banks: any[] } | null = null;
+let memoryDb: { users: User[], banks: { id: string, name: string, url: string }[] } | null = null;
 
 const loadDb = () => {
   if (memoryDb) return memoryDb;
   try {
     const fileContents = fs.readFileSync(dbPath, 'utf8');
     memoryDb = JSON.parse(fileContents);
-  } catch (e) {
+  } catch {
     // Fallback if fs fails on Vercel
     memoryDb = {
       users: [
@@ -39,11 +39,11 @@ const loadDb = () => {
   return memoryDb!;
 };
 
-const saveDb = (db: any) => {
+const saveDb = (db: { users: User[], banks: { id: string, name: string, url: string }[] }) => {
   memoryDb = db; // Always save to memory
   try {
     fs.writeFileSync(dbPath, JSON.stringify(db, null, 2));
-  } catch (e) {
+  } catch {
     // Ignore write errors on Vercel Serverless (read-only file system)
   }
 };

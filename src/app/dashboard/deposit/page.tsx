@@ -23,7 +23,7 @@ export default function DepositPage() {
       setStatus({ 
         type: 'success', 
         message: 'DEPOSIT SUCCESSFUL',
-        newBalance: res.newBalance
+        newBalance: res.newBalance ?? undefined
       });
 
     } else {
