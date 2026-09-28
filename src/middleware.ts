@@ -25,7 +25,7 @@ export function middleware(request: NextRequest) {
   // 3. DASAR ANTI-DDOS & RATE LIMITING
   // Catatan: Pada skala produksi besar, Anti-DDoS wajib diaktifkan di level infrastruktur (Cloudflare / AWS Shield).
   // Middleware ini bertugas sebagai filter lapis pertama di level aplikasi (Edge).
-  const ip = request.ip || request.headers.get('x-forwarded-for') || 'Unknown';
+  // const ip = request.ip || request.headers.get('x-forwarded-for') || 'Unknown';
   
   // Jika IP dicurigai melakukan spamming (contoh logika), bisa di-block disini:
   // if (isRateLimited(ip)) return new NextResponse('Too Many Requests', { status: 429 });
