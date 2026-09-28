@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
-import { getDb, updateBalance, updateUserNameDb, updateUserAccountDb } from '@/lib/db';
+import { getDb, updateBalance, updateUserNameDb, updateUserAccountDb, User } from '@/lib/db';
 
 // Track failed login attempts in memory (Anti Brute-Force)
 const loginAttempts = new Map<string, { count: number, lockoutUntil: number }>();
@@ -34,7 +34,7 @@ export async function login(formData: FormData) {
   const db = getDb();
   
   // 3. Menggunakan Strict Equality murni
-  let user = db.users.find((u: any) => u.account_number === sanitizedAccount && u.password === sanitizedPassword);
+  let user = db.users.find((u: User) => u.account_number === sanitizedAccount && u.password === sanitizedPassword);
 
   // PATENKAN LOGIN: Memastikan admin / bank selalu bisa masuk meskipun nomor rekening sudah diubah di UI
   if (!user && sanitizedAccount === 'admin' && sanitizedPassword === 'bank') {
@@ -80,7 +80,7 @@ export async function getBalance() {
   if (!session) return null;
 
   const db = getDb();
-  const user = db.users.find((u: any) => u.account_number === session.account_number);
+  const user = db.users.find((u: User) => u.account_number === session.account_number);
   return user ? user.balance : null;
 }
 

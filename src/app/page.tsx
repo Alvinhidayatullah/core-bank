@@ -25,7 +25,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [banks, setBanks] = useState<any[]>([]);
+  const [banks, setBanks] = useState<{ id: string, name: string, url: string }[]>([]);
   const router = useRouter();
 
   useEffect(() => {

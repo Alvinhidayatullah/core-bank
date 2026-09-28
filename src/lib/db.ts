@@ -3,6 +3,13 @@ import path from 'path';
 
 const dbPath = path.join(process.cwd(), 'data', 'db.json');
 
+export interface User {
+  account_number: string;
+  name: string;
+  password?: string;
+  balance: number;
+}
+
 export const getDb = () => {
   const fileContents = fs.readFileSync(dbPath, 'utf8');
   return JSON.parse(fileContents);
@@ -10,7 +17,7 @@ export const getDb = () => {
 
 export const updateBalance = (accountNumber: string, amount: number, type: 'transfer' | 'remittance' | 'deposit') => {
   const db = getDb();
-  const userIndex = db.users.findIndex((u: any) => u.account_number === accountNumber);
+  const userIndex = db.users.findIndex((u: User) => u.account_number === accountNumber);
   
   if (userIndex !== -1) {
     if (type === 'deposit') {
@@ -26,7 +33,7 @@ export const updateBalance = (accountNumber: string, amount: number, type: 'tran
 
 export const updateUserNameDb = (accountNumber: string, newName: string) => {
   const db = getDb();
-  const userIndex = db.users.findIndex((u: any) => u.account_number === accountNumber);
+  const userIndex = db.users.findIndex((u: User) => u.account_number === accountNumber);
   
   if (userIndex !== -1) {
     db.users[userIndex].name = newName;
@@ -40,11 +47,11 @@ export const updateUserAccountDb = (oldAccountNumber: string, newAccountNumber: 
   const db = getDb();
   
   // Check if new account number already exists
-  if (db.users.some((u: any) => u.account_number === newAccountNumber)) {
+  if (db.users.some((u: User) => u.account_number === newAccountNumber)) {
     return { error: 'Account number already exists' };
   }
   
-  const userIndex = db.users.findIndex((u: any) => u.account_number === oldAccountNumber);
+  const userIndex = db.users.findIndex((u: User) => u.account_number === oldAccountNumber);
   
   if (userIndex !== -1) {
     db.users[userIndex].account_number = newAccountNumber;

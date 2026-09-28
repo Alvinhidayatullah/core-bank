@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { logout, updateUserName } from '@/app/actions';
 
-export default function Sidebar({ user }: { user: any }) {
+export default function Sidebar({ user }: { user: { name: string, account_number: string } }) {
   const pathname = usePathname();
   const [isEditingName, setIsEditingName] = useState(false);
   const [newName, setNewName] = useState(user.name);
